@@ -1,0 +1,6 @@
+@Ecom.Core.API_HostAddress = http://localhost:5262
+
+GET {{Ecom.Core.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

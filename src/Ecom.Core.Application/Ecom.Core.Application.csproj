@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ecom.Core.Domain\Ecom.Core.Domain.csproj" />
+    <ProjectReference Include="..\Ecom.Core.Infrastructure\Ecom.Core.Infrastructure.csproj" />
+    <ProjectReference Include="..\Ecom.Core.Shared\Ecom.Core.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Moclawr.MinimalAPI" Version="2.1.9" />
+    <PackageReference Include="Moclawr.Services.Autofac" Version="2.1.1" />
+    <PackageReference Include="Moclawr.Services.AWS.S3" Version="2.0.0" />
+    <PackageReference Include="Moclawr.Services.Caching" Version="2.1.0" />
+    <PackageReference Include="Moclawr.Shared" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Attributes\Commands\" />
+    <Folder Include="Features\Categories\Commands\" />
+    <Folder Include="Features\Products\Commands\" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

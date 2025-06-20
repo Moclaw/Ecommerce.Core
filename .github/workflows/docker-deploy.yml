@@ -53,12 +53,13 @@ jobs:
           dotnet test --configuration Release --no-build --verbosity normal
 
       - name: "Validate Dockerfile"
+        shell: pwsh
         run: |
-          if [ ! -f "src/Ecom.Core.API/Dockerfile" ]; then
-            echo "❌ Dockerfile not found at src/Ecom.Core.API/Dockerfile"
+          if (-not (Test-Path "src/Ecom.Core.API/Dockerfile")) {
+            Write-Host "❌ Dockerfile not found at src/Ecom.Core.API/Dockerfile" -ForegroundColor Red
             exit 1
-          fi
-          echo "✅ Dockerfile found"
+          }
+          Write-Host "✅ Dockerfile found" -ForegroundColor Green
 
       - name: "Build Docker Image"
         run: |
@@ -79,20 +80,25 @@ jobs:
         uses: actions/checkout@v4
 
       - name: "Setup Environment"
+        shell: pwsh
         run: |
           # Ensure logs directory exists
-          mkdir -p ./logs
+          if (-not (Test-Path "./logs")) {
+            New-Item -ItemType Directory -Path "./logs" -Force
+          }
 
       - name: "Stop and Remove Existing Container"
+        shell: pwsh
         run: |
           # Check if container exists and stop it
-          if docker ps -a --format '{{.Names}}' | grep -q "${{ env.CONTAINER_NAME }}"; then
-            echo "Stopping existing container..."
+          $containerExists = docker ps -a --format "{{.Names}}" | Select-String "${{ env.CONTAINER_NAME }}"
+          if ($containerExists) {
+            Write-Host "Stopping existing container..."
             docker stop ${{ env.CONTAINER_NAME }}
             docker rm ${{ env.CONTAINER_NAME }}
-          else
-            echo "No existing container found."
-          fi
+          } else {
+            Write-Host "No existing container found."
+          }
 
       - name: "Deploy with Docker"
         run: |
@@ -136,15 +142,22 @@ jobs:
 
     steps:
       - name: "Archive Logs"
+        shell: pwsh
         run: |
           # Create logs archive directory
-          mkdir -p ./logs/archive/$(date +%Y%m%d)
+          $archiveDate = Get-Date -Format "yyyyMMdd"
+          $archivePath = "./logs/archive/$archiveDate"
+          if (-not (Test-Path $archivePath)) {
+            New-Item -ItemType Directory -Path $archivePath -Force
+          }
 
           # Copy current logs
-          cp -r ./logs/* ./logs/archive/$(date +%Y%m%d)/ 2>/dev/null || true
+          if (Test-Path "./logs") {
+            Copy-Item -Path "./logs/*" -Destination $archivePath -Recurse -Force -ErrorAction SilentlyContinue
+          }
 
           # Compress old logs (older than 7 days)
-          find ./logs/archive -name "*.txt" -mtime +7 -exec gzip {} \; 2>/dev/null || true
+          Get-ChildItem -Path "./logs/archive" -Recurse -File -Include "*.txt" | Where-Object { $_.LastWriteTime -lt (Get-Date).AddDays(-7) } | ForEach-Object { gzip $_.FullName }
 
       - name: "Cleanup Docker Images"
         run: |

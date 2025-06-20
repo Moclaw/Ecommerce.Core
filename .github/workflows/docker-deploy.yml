@@ -52,15 +52,6 @@ jobs:
         run: |
           dotnet test --configuration Release --no-build --verbosity normal
 
-      - name: "Validate Dockerfile"
-        shell: pwsh
-        run: |
-          if (-not (Test-Path "src/Ecom.Core.API/Dockerfile")) {
-            Write-Host "❌ Dockerfile not found at src/Ecom.Core.API/Dockerfile" -ForegroundColor Red
-            exit 1
-          }
-          Write-Host "✅ Dockerfile found" -ForegroundColor Green
-
       - name: "Build Docker Image"
         run: |
           echo "Building Docker image..."

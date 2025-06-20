@@ -52,9 +52,19 @@ jobs:
         run: |
           dotnet test --configuration Release --no-build --verbosity normal
 
+      - name: "Validate Dockerfile"
+        run: |
+          if [ ! -f "src/Ecom.Core.API/Dockerfile" ]; then
+            echo "❌ Dockerfile not found at src/Ecom.Core.API/Dockerfile"
+            exit 1
+          fi
+          echo "✅ Dockerfile found"
+
       - name: "Build Docker Image"
         run: |
+          echo "Building Docker image..."
           docker build -t ${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }} -f src/Ecom.Core.API/Dockerfile .
+          echo "✅ Docker image built successfully"
 
   # ==========================================
   # DEPLOY JOB

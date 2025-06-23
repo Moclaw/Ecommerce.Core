@@ -92,7 +92,7 @@ jobs:
           docker run -d \
             --name ${{ env.CONTAINER_NAME }} \
             --restart unless-stopped \
-            -p ${{ env.API_PORT }}:8080 \
+            -p ${{ env.API_PORT }}:${{ env.API_PORT }} \
             -e ASPNETCORE_ENVIRONMENT=Development \
             -v "$(pwd)/logs:/app/logs" \
             --network ecommerce-network \

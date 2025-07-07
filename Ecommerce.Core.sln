@@ -4,8 +4,6 @@ VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{0C88DD14-F956-CE84-757C-A364CCF449FC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecom.Core.API", "src\Ecom.Core.API\Ecom.Core.API.csproj", "{1922310D-E5AE-504C-8933-8ED27280F973}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecom.Core.Application", "src\Ecom.Core.Application\Ecom.Core.Application.csproj", "{BEA08357-F0A2-0540-603F-A815727103F9}"
@@ -15,12 +13,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecom.Core.Infrastructure", "src\Ecom.Core.Infrastructure\Ecom.Core.Infrastructure.csproj", "{8EEA7FDE-3E56-02E3-F0B5-2F407C05508B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecom.Core.Shared", "src\Ecom.Core.Shared\Ecom.Core.Shared.csproj", "{D8C257FE-E626-E850-7209-9F3F3D6323DF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcomCore.Application.UnitTests", "test\EcomCore.Application.UnitTests\EcomCore.Application.UnitTests.csproj", "{FF069231-B3F8-CF77-C6CF-BFD09B94DEBE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcomCore.Domain.UnitTests", "test\EcomCore.Domain.UnitTests\EcomCore.Domain.UnitTests.csproj", "{75210E8C-AD71-BED2-D23C-AFA9AF7BC258}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcomCore.Infrastructure.UnitTests", "test\EcomCore.Infrastructure.UnitTests\EcomCore.Infrastructure.UnitTests.csproj", "{B1A5463E-9D75-C578-040C-92D44B35D787}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,18 +40,6 @@ Global
 		{D8C257FE-E626-E850-7209-9F3F3D6323DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8C257FE-E626-E850-7209-9F3F3D6323DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8C257FE-E626-E850-7209-9F3F3D6323DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF069231-B3F8-CF77-C6CF-BFD09B94DEBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF069231-B3F8-CF77-C6CF-BFD09B94DEBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF069231-B3F8-CF77-C6CF-BFD09B94DEBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF069231-B3F8-CF77-C6CF-BFD09B94DEBE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75210E8C-AD71-BED2-D23C-AFA9AF7BC258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75210E8C-AD71-BED2-D23C-AFA9AF7BC258}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75210E8C-AD71-BED2-D23C-AFA9AF7BC258}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75210E8C-AD71-BED2-D23C-AFA9AF7BC258}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B1A5463E-9D75-C578-040C-92D44B35D787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B1A5463E-9D75-C578-040C-92D44B35D787}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B1A5463E-9D75-C578-040C-92D44B35D787}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B1A5463E-9D75-C578-040C-92D44B35D787}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,9 +50,6 @@ Global
 		{D5CE9E2A-65AE-5745-738A-DC3E4CFC3418} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{8EEA7FDE-3E56-02E3-F0B5-2F407C05508B} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{D8C257FE-E626-E850-7209-9F3F3D6323DF} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
-		{FF069231-B3F8-CF77-C6CF-BFD09B94DEBE} = {0C88DD14-F956-CE84-757C-A364CCF449FC}
-		{75210E8C-AD71-BED2-D23C-AFA9AF7BC258} = {0C88DD14-F956-CE84-757C-A364CCF449FC}
-		{B1A5463E-9D75-C578-040C-92D44B35D787} = {0C88DD14-F956-CE84-757C-A364CCF449FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {126F5591-1F0D-4BD6-A08A-E9DEB5A728A6}

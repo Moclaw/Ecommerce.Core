@@ -55,7 +55,6 @@ builder
     )
     .AddAutofac()
     .AddGlobalExceptionHandling(appName)
-    .AddHealthCheck(configuration)
     // Register Infrastructure and Application services
     .AddInfrastructureServices(configuration)
     .AddApplicationServices(configuration);

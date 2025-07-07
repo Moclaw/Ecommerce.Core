@@ -20,10 +20,21 @@ namespace Ecom.Core.Infrastructure
         )
         {
             ArgumentNullException.ThrowIfNull(configuration);
+
+            // auto migration
+
+            var scope = services.BuildServiceProvider().CreateScope();
+            using (scope)
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                dbContext.Database.Migrate();
+            }
+
             // Register DbContext
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
+                options
+                    .UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
                     .EnableSensitiveDataLogging()
                     .LogTo(Console.WriteLine, LogLevel.Information);
             });
@@ -32,7 +43,9 @@ namespace Ecom.Core.Infrastructure
 
             //services.AddDotnetCap(configuration).AddRabbitMq(configuration);
 
-            services.AddKeyedScoped<ICommandRepository, CommandDefaultRepository>(ServiceKeys.CommandRepository);
+            services.AddKeyedScoped<ICommandRepository, CommandDefaultRepository>(
+                ServiceKeys.CommandRepository
+            );
 
             services.TryAddKeyedScoped(
                 typeof(IQueryRepository<,>),

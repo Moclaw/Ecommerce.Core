@@ -21,15 +21,6 @@ namespace Ecom.Core.Infrastructure
         {
             ArgumentNullException.ThrowIfNull(configuration);
 
-            // auto migration
-
-            var scope = services.BuildServiceProvider().CreateScope();
-            using (scope)
-            {
-                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                dbContext.Database.Migrate();
-            }
-
             // Register DbContext
             services.AddDbContext<ApplicationDbContext>(options =>
             {
@@ -40,6 +31,14 @@ namespace Ecom.Core.Infrastructure
             });
 
             services.AddScoped<ApplicationDbContext>();
+
+            // auto migration - moved after DbContext registration
+            var scope = services.BuildServiceProvider().CreateScope();
+            using (scope)
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                dbContext.Database.Migrate();
+            }
 
             //services.AddDotnetCap(configuration).AddRabbitMq(configuration);
 

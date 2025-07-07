@@ -96,7 +96,6 @@ jobs:
             -p ${{ env.API_PORT }}:8080 \
             -e ASPNETCORE_ENVIRONMENT=Development \
             -v "$(pwd)/logs:/app/logs" \
-            --network bridge \
             ${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }}
           
           # Display container info

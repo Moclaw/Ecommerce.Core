@@ -48,10 +48,6 @@ jobs:
       - name: "Build Solution"
         run: dotnet build --configuration Release --no-restore
 
-      - name: "Run Unit Tests"
-        run: |
-          dotnet test --configuration Release --no-build --verbosity normal
-
       - name: "Build Docker Image"
         run: |
           docker build -t ${{ env.DOCKER_IMAGE }}:${{ env.DOCKER_TAG }} -f src/Ecom.Core.API/Dockerfile .

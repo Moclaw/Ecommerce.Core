@@ -482,7 +482,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # Application specific
-appsettings.Development.json
 appsettings.Production.json
 appsettings.Staging.json
 ConnectionStrings.json
